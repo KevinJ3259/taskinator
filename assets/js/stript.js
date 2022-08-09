@@ -41,15 +41,14 @@ var taskFormHandler = function (event) {
   }
 };
 
-var createTaskEl = function(taskDataObj) {
+var createTaskEl = function (taskDataObj) {
   var listItemEl = document.createElement("li");
   listItemEl.className = "task-item";
   listItemEl.setAttribute("data-task-id", taskIdCounter);
 
   var taskInfoEl = document.createElement("div");
   taskInfoEl.className = "task-info";
-  taskInfoEl.innerHTML =
-    "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
   listItemEl.appendChild(taskInfoEl);
 
   var taskActionsEl = createTaskActions(taskIdCounter);
@@ -125,9 +124,7 @@ var createTaskActions = function (taskId) {
 
 var completeEditTask = function (taskName, taskType, taskId) {
   // find task list item with taskId value
-  var taskSelected = document.querySelector(
-    ".task-item[data-task-id='" + taskId + "']"
-  );
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
   // set new values
   taskSelected.querySelector("h3.task-name").textContent = taskName;
@@ -172,9 +169,7 @@ var taskStatusChangeHandler = function (event) {
   // find task list item based on event.target's data-task-id attribute
   var taskId = event.target.getAttribute("data-task-id");
 
-  var taskSelected = document.querySelector(
-    ".task-item[data-task-id='" + taskId + "']"
-  );
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
   // convert value to lower case
   var statusValue = event.target.value.toLowerCase();
@@ -202,9 +197,7 @@ var editTask = function (taskId) {
   console.log(taskId);
 
   // get task list item element
-  var taskSelected = document.querySelector(
-    ".task-item[data-task-id='" + taskId + "']"
-  );
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
   // get content from task name and type
   var taskName = taskSelected.querySelector("h3.task-name").textContent;
@@ -226,9 +219,7 @@ var editTask = function (taskId) {
 var deleteTask = function (taskId) {
   console.log(taskId);
   // find task list element with taskId value and remove it
-  var taskSelected = document.querySelector(
-    ".task-item[data-task-id='" + taskId + "']"
-  );
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
   taskSelected.remove();
 
   // create new array to hold updated list of tasks
@@ -247,11 +238,11 @@ var deleteTask = function (taskId) {
   saveTasks();
 };
 
-var saveTasks = function() {
+var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-var loadTasks = function() {
+var loadTasks = function () {
   var savedTasks = localStorage.getItem("tasks");
   // if there are no tasks, set tasks to an empty array and return out of the function
   if (!savedTasks) {
